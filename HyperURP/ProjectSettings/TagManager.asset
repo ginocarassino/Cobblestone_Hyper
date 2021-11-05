@@ -3,12 +3,20 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - GroundBullet
+  - SpeedCube
+  - Wall
+  - Out
+  - GroundFall
+  - Ground1
+  - Ground2
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 

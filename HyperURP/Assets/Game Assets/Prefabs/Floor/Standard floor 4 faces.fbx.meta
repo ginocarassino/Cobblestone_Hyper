@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0ca1dd57e4dc58c42bd505476ec488a2
+guid: 5f9dffeb9a6a573488fe9c3025f4b8ba
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -7,12 +7,12 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Cube glow.002
+      name: Cube glow
     second: {fileID: 2100000, guid: 274ccda61e3d0dc4c835b3fe6d480a72, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Cube solid .002
+      name: Cube solid_
     second: {fileID: 2100000, guid: a630a011b523bfa418ff3c0cc30eaca3, type: 2}
   materials:
     materialImportMode: 2
