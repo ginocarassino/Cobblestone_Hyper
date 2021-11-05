@@ -76,8 +76,8 @@ public class PlayerController : MonoBehaviour
             //    isJumping = false;
             //}
 
-            if (isGrounded && Input.GetButtonDown("Jump"))
-            {
+            if (Input.GetButtonDown("Fire1"))
+            {//if (isGrounded && Input.GetButtonDown("Jump"))
                 velocity.y += Mathf.Sqrt(jumpHeight * -2 * gravity);
                 isJumping = true;
             }
