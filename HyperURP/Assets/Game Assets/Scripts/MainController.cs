@@ -11,6 +11,7 @@ public class MainController : MonoBehaviour
     public GameObject PanelOver;
 
     [Header("UI")]
+    public AudioSource BGMusic;
     public Text TBullets;
 
     [Header("Player")]
@@ -30,6 +31,7 @@ public class MainController : MonoBehaviour
     public void StartGame()
     {
         Player_CTR.isStarted = true;
+        BGMusic.Play(0);
     }
 
     public void EndGame()
