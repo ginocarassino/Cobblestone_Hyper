@@ -10,17 +10,25 @@ public class MainController : MonoBehaviour
 
     public GameObject PanelOver;
 
-    [Header("UI")]
+    [Header("Sounds")]
     public AudioSource BGMusic;
+    public AudioSource DeathSound;
+
+    [Header("UI")]
     public Text TBullets;
 
     [Header("Player")]
+    public CharacterController Hero;
+    public MeshRenderer HeroMeshRenderer;
+    public ParticleSystem Explosion;
     public int bulletsNumber = 0;
 
     void Start()
     {
         Player_CTR = (PlayerController)FindObjectOfType(typeof(PlayerController));
         TBullets.text = bulletsNumber.ToString();
+
+        StartGame();
     }
 
     void Update()
@@ -30,18 +38,38 @@ public class MainController : MonoBehaviour
 
     public void StartGame()
     {
-        Player_CTR.isStarted = true;
-        BGMusic.Play(0);
+        StartCoroutine(StartRoutine());
     }
 
     public void EndGame()
     {
-        PanelOver.SetActive(true);
-        Player_CTR.isStarted = false;
+        Hero.enabled = false;
+        BGMusic.Stop();
+        HeroMeshRenderer.enabled = false;
+        Explosion.Play();
+        DeathSound.Play(0);
+
+        StartCoroutine(EndRoutine());
+        
+
+        //PanelOver.SetActive(true);
+        //Player_CTR.isStarted = false;
     }
 
     public void StartAgain()
     {
         SceneManager.LoadScene("MainScene");
+    }
+
+    IEnumerator StartRoutine()
+    {
+        yield return new WaitForSeconds(1);
+        Player_CTR.isStarted = true;
+        BGMusic.Play(0);
+    }
+    IEnumerator EndRoutine()
+    {
+        yield return new WaitForSeconds(1);
+        StartAgain();
     }
 }
