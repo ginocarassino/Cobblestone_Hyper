@@ -70,23 +70,23 @@ public class PlayerController : MonoBehaviour
 
             characterController.Move(new Vector3(horizontalInput * runSpeed, 0, 0) * Time.deltaTime);
 
-            //if (isJumping && Input.GetButtonDown("Jump"))
-            //{
-            //    velocity.y += Mathf.Sqrt(jumpHeight * -2 * gravity);
-            //    isJumping = false;
-            //}
+            Jump();
 
-            if (Input.GetButtonDown("Fire1"))
-            {//if (isGrounded && Input.GetButtonDown("Jump"))
-                velocity.y += Mathf.Sqrt(jumpHeight * -2 * gravity);
-                isJumping = true;
-            }
 
             //Vertical velocity
             characterController.Move(velocity * Time.deltaTime);
 
             //runSpeed += 1 * Time.deltaTime;
             bar.SetSpeed((int)runSpeed);
+        }
+    }
+
+    void Jump()
+    {
+        if (isGrounded && Input.GetButton("Fire1"))
+        {
+            velocity.y += Mathf.Sqrt(jumpHeight * -2 * gravity);
+            isJumping = true;
         }
     }
 
