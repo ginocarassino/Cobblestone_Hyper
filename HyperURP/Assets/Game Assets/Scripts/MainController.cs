@@ -8,20 +8,23 @@ public class MainController : MonoBehaviour
 {
     private PlayerController Player_CTR;
 
-    public GameObject PanelOver;
-
-    [Header("Sounds")]
-    public AudioSource BGMusic;
-    public AudioSource DeathSound;
-
-    [Header("UI")]
-    public Text TBullets;
+    
 
     [Header("Player")]
     public CharacterController Hero;
     public MeshRenderer HeroMeshRenderer;
     public ParticleSystem Explosion;
     public int bulletsNumber = 0;
+
+    [Header("Sounds")]
+    public AudioSource BGMusic;
+    public AudioSource DeathSound;
+
+    [Header("UI")]
+    public GameObject PanelPause;
+    public Text TBullets;
+
+
 
     void Start()
     {
@@ -38,6 +41,9 @@ public class MainController : MonoBehaviour
 
     public void StartGame()
     {
+        BGMusic.UnPause();
+        Time.timeScale = 1f;
+
         StartCoroutine(StartRoutine());
     }
 
@@ -50,10 +56,19 @@ public class MainController : MonoBehaviour
         DeathSound.Play(0);
 
         StartCoroutine(EndRoutine());
-        
+    }
 
-        //PanelOver.SetActive(true);
-        //Player_CTR.isStarted = false;
+    public void PauseGame()
+    {
+        PanelPause.SetActive(true);
+        BGMusic.Pause();
+        Time.timeScale = 0f;
+    }
+    public void ResumeGame()
+    {
+        PanelPause.SetActive(false);
+        BGMusic.UnPause();
+        Time.timeScale = 1f;
     }
 
     public void StartAgain()
