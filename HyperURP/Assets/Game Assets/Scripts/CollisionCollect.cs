@@ -35,6 +35,14 @@ public class CollisionCollect : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+        else if (this.tag == "FloatingCube")
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                ctr_Main.nCollectibles++;
+                Destroy(this.gameObject);
+            }
+        }
 
     }
 }

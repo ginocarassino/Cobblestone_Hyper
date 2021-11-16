@@ -12,6 +12,8 @@ TagManager:
   - GroundFall
   - Ground1
   - Ground2
+  - EndLevelCollision
+  - FloatingCube
   layers:
   - Default
   - TransparentFX

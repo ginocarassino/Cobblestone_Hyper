@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Out")
         {
             Debug.Log("Out");
-            Main_CTR.EndGame();
+            Main_CTR.Death();
         }
 
         if (other.gameObject.tag == "Ground1")
@@ -112,6 +112,12 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             jumpHeight = JumpGroundTwo;
+        }
+
+        if (other.gameObject.tag == "EndLevelCollision")
+        {
+            Debug.Log("END LEVEL");
+            Main_CTR.EndGame();
         }
     }
 }

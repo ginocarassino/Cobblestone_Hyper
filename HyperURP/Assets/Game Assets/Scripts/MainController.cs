@@ -8,7 +8,11 @@ public class MainController : MonoBehaviour
 {
     private PlayerController Player_CTR;
 
-    
+    [Header("Camera")]
+    [SerializeField] GameObject _camera;
+
+    [Header("Economy")]
+    public int nCollectibles = 0;
 
     [Header("Player")]
     public CharacterController Hero;
@@ -17,12 +21,20 @@ public class MainController : MonoBehaviour
     public int bulletsNumber = 0;
 
     [Header("Sounds")]
-    public AudioSource BGMusic;
-    public AudioSource DeathSound;
+    [SerializeField] AudioSource BGMusic;
+    [SerializeField] AudioSource DeathSound;
+    [SerializeField] AudioSource WinSound;
+    [SerializeField] AudioSource PopUpSound;
 
     [Header("UI")]
-    public GameObject PanelPause;
+    [SerializeField] GameObject PanelPause;
+    [SerializeField] GameObject PanelBlackEnd;
+    [SerializeField] GameObject PopUpPanel;
+    [SerializeField] GameObject ScorePanel;
     public Text TBullets;
+
+    [Header("Particle Effects")]
+    [SerializeField] ParticleSystem Firework;
 
 
 
@@ -39,6 +51,7 @@ public class MainController : MonoBehaviour
         
     }
 
+    #region [GAME STATES]
     public void StartGame()
     {
         BGMusic.UnPause();
@@ -49,6 +62,34 @@ public class MainController : MonoBehaviour
 
     public void EndGame()
     {
+        _camera.transform.parent = Hero.transform;
+        _camera.GetComponent<Animator>().enabled = true;
+        _camera.GetComponent<Animator>().SetBool("isEnd", true);
+        Firework.Play();
+        BGMusic.Pause();
+        WinSound.Play(0);
+
+        PanelBlackEnd.SetActive(true);
+        PanelBlackEnd.GetComponent<Animator>().enabled = true;
+        StartCoroutine(PopRoutine());
+    }
+
+    public void PauseGame()
+    {
+        PanelPause.SetActive(true);
+        BGMusic.Pause();
+        Time.timeScale = 0f;
+    }
+
+    public void ResumeGame()
+    {
+        PanelPause.SetActive(false);
+        BGMusic.UnPause();
+        Time.timeScale = 1f;
+    }
+
+    public void Death()
+    {
         Hero.enabled = false;
         BGMusic.Stop();
         HeroMeshRenderer.enabled = false;
@@ -58,24 +99,14 @@ public class MainController : MonoBehaviour
         StartCoroutine(EndRoutine());
     }
 
-    public void PauseGame()
-    {
-        PanelPause.SetActive(true);
-        BGMusic.Pause();
-        Time.timeScale = 0f;
-    }
-    public void ResumeGame()
-    {
-        PanelPause.SetActive(false);
-        BGMusic.UnPause();
-        Time.timeScale = 1f;
-    }
-
     public void StartAgain()
     {
         SceneManager.LoadScene("MainScene");
     }
+    #endregion
 
+
+    #region [ROUTINES]
     IEnumerator StartRoutine()
     {
         yield return new WaitForSeconds(1);
@@ -87,4 +118,16 @@ public class MainController : MonoBehaviour
         yield return new WaitForSeconds(1);
         StartAgain();
     }
+    IEnumerator PopRoutine()
+    {
+        yield return new WaitForSeconds(2);
+        PopUpPanel.SetActive(true);
+        PopUpSound.Play(0);
+
+        yield return new WaitForSeconds(8);
+        PopUpPanel.SetActive(false);
+        ScorePanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    #endregion
 }
