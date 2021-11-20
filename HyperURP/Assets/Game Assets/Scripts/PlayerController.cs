@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask groundLayers;
     [SerializeField] public float runSpeed = 8f;
     [SerializeField] private float jumpHeight = 2f;
+    [SerializeField] private float jumpTime = 2.5f;
 
     private MainController Main_CTR;
 
@@ -68,13 +69,12 @@ public class PlayerController : MonoBehaviour
                 velocity.y += gravity * Time.deltaTime;
             }
 
-            characterController.Move(new Vector3(horizontalInput * runSpeed, 0, 0) * Time.deltaTime);
-
+            MoveHero();
             Jump();
 
 
             //Vertical velocity
-            characterController.Move(velocity * Time.deltaTime);
+            characterController.Move(velocity * Time.deltaTime * jumpTime);
 
             //runSpeed += 1 * Time.deltaTime;
             bar.SetSpeed((int)runSpeed);
@@ -85,9 +85,14 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded && Input.GetButton("Fire1"))
         {
-            velocity.y += Mathf.Sqrt(jumpHeight * -2 * gravity);
+            velocity.y += Mathf.Sqrt(jumpHeight * -1 * gravity);
             isJumping = true;
         }
+    }
+
+    private void MoveHero()
+    {
+        characterController.Move(new Vector3(horizontalInput * runSpeed, 0, 0) * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
