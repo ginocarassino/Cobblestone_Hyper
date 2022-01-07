@@ -90,8 +90,8 @@ MonoBehaviour:
   uiBounds:
     serializedVersion: 2
     x: 580
-    y: -351
-    width: 2383
+    y: -352
+    width: 2384
     height: 2037
 --- !u!114 &114350483966674976
 MonoBehaviour:
@@ -280,7 +280,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 20
+      m_SerializableObject: 3
     m_Space: 2147483647
   m_Property:
     name: Rate
@@ -2074,7 +2074,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 30
+      m_SerializableObject: 5
     m_Space: 2147483647
   m_Property:
     name: Rate
@@ -3332,7 +3332,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 50
+      m_SerializableObject: 10
     m_Space: 2147483647
   m_Property:
     name: Rate
@@ -3704,7 +3704,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614716}
   - {fileID: 8926484042661614718}
   dataType: 0
-  capacity: 1000
+  capacity: 10
   stripCapacity: 16
   particlePerStripCount: 16
   m_Space: 0
